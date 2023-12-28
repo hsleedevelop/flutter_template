@@ -58,6 +58,30 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension "app"
+            applicationIdSuffix ".dev"
+            resValue "string", "app_name", "flutter_templte-DEV"
+            resValue "string", "app_links_host", "com.example.flutter_template"
+        }
+
+        stg {
+            dimension "app"
+            applicationIdSuffix ".stg"
+            resValue "string", "app_name", "flutter_templte-STG"
+            resValue "string", "app_links_host", "com.example.flutter_template"
+        }
+
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "flutter_templte"
+            resValue "string", "app_links_host", "com.example.flutter_template"
+        }
+    }
 }
 
 flutter {

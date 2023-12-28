@@ -13,8 +13,10 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: "Main App".text.make(),
+        body: SafeArea(
+          child: Center(
+            child: "Main App".text.size(20).blue50.make(),
+          ),
         ),
       ),
     );
