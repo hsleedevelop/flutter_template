@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+
+import 'presentation/routes/route_mixin.dart';
+import 'utils/theme/app_theme.dart';
+
+//1. riverpod
+//2. table select
+//3. change state
+//4. load screen
+//5. viewLoad > fetch > core > dio > inject..
+//6. listing
+//7. pagination
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -8,17 +18,19 @@ class MainApp extends StatefulWidget {
   State<MainApp> createState() => _MainAppState();
 }
 
-class _MainAppState extends State<MainApp> {
+class _MainAppState extends State<MainApp> with RouteMixin {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: "Main App".text.size(20).blue50.make(),
-          ),
-        ),
+    final mainAppKey = GlobalKey();
+
+    return MaterialApp.router(
+      theme: ThemeData(
+        extensions: [AppTheme.appTexts, AppTheme.appColors],
+        useMaterial3: false,
+        fontFamily: 'inter'
       ),
+      routerConfig: routeConfig,
+      key: mainAppKey,
     );
   }
 }
