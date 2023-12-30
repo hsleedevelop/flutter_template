@@ -83,7 +83,7 @@ class _MainScreenView extends StatelessWidget {
 
 class _MenuCell extends StatelessWidget {
   final TemplateMenu menu;
-  final Function(TemplateMenu, BuildContext) onTap; // Define a callback function
+  final Function(TemplateMenu, BuildContext) onTap;
 
   const _MenuCell(this.menu, {required this.onTap});
 

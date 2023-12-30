@@ -4,6 +4,7 @@ import 'package:flutter_template/main_app.dart';
 import 'package:go_router/go_router.dart';
 
 import '../scenes/common/scenes_common_export.dart';
+import '../scenes/grid_type_a/grid_type_a.screen.dart';
 import '../scenes/list_type_a/list_type_a.screen.dart';
 import '../scenes/main/main.screen.dart';
 import '../scenes/splash/splash.screen.dart';
@@ -31,6 +32,11 @@ mixin RouteMixin on State<MainApp> {
           name: "listTypeA",
           builder: (context, state) => const ListTypeAScreen(),
         ),
+        GoRoute(
+          path: RoutePath.gridTypeA,
+          name: "gridTypeA",
+          builder: (context, state) => const GridTypeAScreen(),
+        )
       ]);
 
   GoRouter get routeConfig => _routeConfig;

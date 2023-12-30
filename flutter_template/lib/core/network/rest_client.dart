@@ -20,8 +20,8 @@ class RestClient {
 
     BaseOptions options = BaseOptions(
       receiveDataWhenStatusError: true,
-      connectTimeout: Duration(seconds: timeout), // 60 seconds
-      receiveTimeout: Duration(seconds: timeout), // 60 seconds
+      connectTimeout: Duration(seconds: timeout),
+      receiveTimeout: Duration(seconds: timeout),
       headers: { 'Content-Type': 'application/json' },
     );
 

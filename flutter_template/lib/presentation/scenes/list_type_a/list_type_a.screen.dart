@@ -6,14 +6,9 @@ import '../../../domain/entities/movie.dart';
 import '../../../utils/logger.dart';
 import '../movies_cubit/movies.cubit.dart';
 
-class ListTypeAScreen extends StatefulWidget {
+class ListTypeAScreen extends StatelessWidget {
   const ListTypeAScreen({super.key});
 
-  @override
-  State<ListTypeAScreen> createState() => _ListTypeAScreenState();
-}
-
-class _ListTypeAScreenState extends State<ListTypeAScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -33,13 +28,14 @@ class _ListTypeAScreenView extends StatelessWidget {
       return state.maybeWhen(success: (data) {
         return Scaffold(
           appBar: _appBar(context),
-          body: ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            children: data.results
-                .map((e) => _MovieCell(e, onTap: handleMovieTap))
-                .toList(growable: false),
-          ),
+          body: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: data.results.length,
+              itemBuilder: (BuildContext context, int index) {
+                final movie = data.results[index];
+                return _MovieCell(movie, onTap: handleMovieTap);
+              }),
         );
       }, failure: (error) {
         return Scaffold(
@@ -78,7 +74,7 @@ class _ListTypeAScreenView extends StatelessWidget {
 
 class _MovieCell extends StatelessWidget {
   final Movie movie;
-  final Function(Movie, BuildContext) onTap; // Define a callback function
+  final Function(Movie, BuildContext) onTap;
 
   const _MovieCell(this.movie, {required this.onTap});
 
@@ -91,7 +87,8 @@ class _MovieCell extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           image: DecorationImage(
-            image: NetworkImage("https://image.tmdb.org/t/p/w500/${movie.posterPath}"), // Replace with your remote image URL
+            image: NetworkImage(
+                "https://image.tmdb.org/t/p/w500/${movie.posterPath}"),
             fit: BoxFit.cover,
           ),
         ),
